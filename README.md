@@ -1,8 +1,8 @@
-# 🧠 ImageVault
+# 🧠 Braivo
 
-**ImageVault** is a decentralised file storage app that lets anyone upload, store and prove ownership of files on-chain using [0G Labs Storage](https://0g.ai/).
+**Braivo** is a decentralised file storage app that lets anyone upload, store and prove ownership of files on-chain using [0G Labs Storage](https://0g.ai/).
 
-With ImageVault, your files are:
+With Braivo, your files are:
 - ✅ Uploaded to 0G’s distributed network
 - 🔐 Anchored on-chain with a verifiable Merkle root hash
 - 🌍 Accessible via IPFS from anywhere
@@ -17,7 +17,7 @@ In a world of fake content, shady platforms and censorship, creators and develop
 - **open access**
 - **provable integrity**
 
-**ImageVault** gives you all that — in a few clicks, no crypto wallet required.
+**Braivo** gives you all that — in a few clicks, no crypto wallet required.
 
 ---
 
