@@ -1,7 +1,5 @@
 'use client'
 
-import { Indexer, ZgFile } from '@0glabs/0g-ts-sdk'
-import { ethers } from 'ethers'
 import { useState } from 'react'
 
 export default function Home() {
@@ -17,41 +15,13 @@ export default function Home() {
 
     setUploading(true)
     setStatus('Uploading...')
+    setRootHash('')
+    setTransactionHash('')
+    setIpfsUrl('')
 
-    try {
-      // 1. Setup RPC & wallet (attention à la clé privée !)
-      const RPC_URL = 'https://evmrpc-testnet.0g.ai/'
-      const INDEXER_RPC = 'https://indexer-storage-testnet-turbo.0g.ai'
-      const PRIVATE_KEY = process.env.NEXT_PUBLIC_PRIVATE_KEY as string
+    console.log('Uploading file:', file.name)
 
-      const provider = new ethers.JsonRpcProvider(RPC_URL)
-      const signer = new ethers.Wallet(PRIVATE_KEY, provider)
-      const indexer = new Indexer(INDEXER_RPC)
-
-      // 2. Convert file into ZgFile
-      const zgFile = await ZgFile.fromFilePath(file.name)
-
-      // 3. Generate Merkle tree
-      const [tree, treeErr] = await zgFile.merkleTree()
-      if (treeErr) throw new Error('Merkle tree error: ' + treeErr)
-
-      const root = tree?.rootHash() ?? ''
-      setRootHash(root)
-
-      // 4. Upload to 0G
-      const [txHash, uploadErr] = await indexer.upload(zgFile, RPC_URL, signer)
-      if (uploadErr) throw new Error('Upload error: ' + uploadErr)
-
-      setTransactionHash(txHash)
-      setIpfsUrl(`https://storage.0g.ai/ipfs/${zgFile.cid}`)
-      setStatus('✅ Upload successful!')
-      await zgFile.close()
-    } catch (err: any) {
-      console.error(err)
-      setStatus('❌ Upload failed: ' + err.message)
-    } finally {
-      setUploading(false)
-    }
+   
   }
 
   return (
